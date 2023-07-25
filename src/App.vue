@@ -1,7 +1,16 @@
-<template>
-  <h1 class="m-8 text-6xl text-center">Hello Vue</h1>
-</template>
 
+<template>
+  <MainNav />
+</template>
+<script>
+import MainNav from '@/components/MainNav.vue';
+export default {
+  name: "App",
+  components: {
+    MainNav
+  }
+}
+</script>
 <!-- 
   - styles can leak across the entire component hierarchy if not scoped
   - its not just a parent to child thing its across the component irrespective of the component hierarchy
