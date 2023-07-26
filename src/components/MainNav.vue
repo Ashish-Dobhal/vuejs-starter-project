@@ -10,14 +10,16 @@
         </div> -->
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
-            <li :class="['h-full', index !== 0 ? 'ml-9' : '']" v-for="(navItem, index) in navItems"
+            <li class="h-full" :class="['h-full', index !== 0 ? 'ml-9' : '']" v-for="(navItem, index) in navItems"
               :key="navItem.title">
+              <!-- FYI https://stackoverflow.com/questions/50766775/vue-v-for-conditional-styling -->
               <!-- :class="{'ml-9': index!==0" this works too for single properties -->
               <a class="flex h-full items-center py-2.5"> {{ navItem.title }}</a>
             </li>
-            <button class="absolute right-0 m-4 rounded bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700">
-              Sign In
-            </button>
+            <div class="h-full flex rounded-full absolute right-0 items-center py-2 px-2 mx-2">
+              <ActionButton v-if="!signedIn" text="Sign In" @signIn="signIn()"></ActionButton>
+            <img v-if="signedIn" @click="signOut()" src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png" alt="man avatar" class="h-10 rounded-full overflow-hidden shadow" />
+            </div>
           </ul>
         </nav>
       </div>
@@ -42,8 +44,10 @@
 </template>
 
 <script>
+import ActionButton from "@/components/ActionButton.vue";
 export default {
   name: "MainNav",
+  components: {ActionButton},
   data() {
     return {
       company: "Dobbs Diaries",
@@ -61,12 +65,19 @@ export default {
         { title: "How we Hire", url: "www.google.com" },
         { title: "Students", url: "www.google.com" },
         { title: "Jobs", url: "www.google.com" }
-      ]
+      ],
+      signedIn: false
     }
   },
   methods: {
     isFirstElement(index) {
       return index !== 0
+    },
+    signIn() {
+      this.signedIn = true
+    },
+    signOut() {
+      this.signedIn = false
     }
   }
 
