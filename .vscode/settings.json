@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.autoSave": "onFocusChange",
+  "css.lint.unknownAtRules": "ignore",
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  }
+}
