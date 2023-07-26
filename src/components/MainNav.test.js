@@ -16,4 +16,20 @@ describe("MainNav", ()=>{
         const companyName = screen.getByText("Dobbs Diaries");
         expect(companyName).toBeInTheDocument();
     })
+
+    it.only("shows all the nav items", () => {
+        render(MainNav);
+        const navItemsText = screen.getAllByRole('listitem').map((navItem) => navItem.textContent);
+        const expectedNavItemsText = [ "Teams", "Location", "Life at Dobbs Diaries", 'How we Hire', 'Students', 'Jobs', 'Sign in'];
+        expect(navItemsText).toEqual([
+            'Teams',
+            'Location',
+            'Life at Dobbs Diaries',
+            'How we Hire',
+            'Students',
+            'Jobs',
+            'Ashish',
+            'Nupur'
+          ])
+    })
 })
