@@ -17,8 +17,9 @@
               <a class="flex h-full items-center py-2.5"> {{ navItem.title }}</a>
             </li>
             <div class="h-full flex rounded-full absolute right-0 items-center py-2 px-2 mx-2">
-              <ActionButton v-if="!signedIn" text="Sign In" @signIn="signIn()"></ActionButton>
-            <img v-if="signedIn" @click="signOut()" src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png" alt="man avatar" class="h-10 rounded-full overflow-hidden shadow" />
+              <ActionButton v-if="!signedIn" text="Sign In" @signIn="signIn()" />
+              <ProfileImage v-else src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png"
+                alt="Profile Pic" @signOut="signOut()" />
             </div>
           </ul>
         </nav>
@@ -45,9 +46,10 @@
 
 <script>
 import ActionButton from "@/components/ActionButton.vue";
+import ProfileImage from "@/components/ProfileImage.vue";
 export default {
   name: "MainNav",
-  components: {ActionButton},
+  components: { ActionButton, ProfileImage },
   data() {
     return {
       company: "Dobbs Diaries",

@@ -1,5 +1,7 @@
 <template>
-    <button  @click="signIn" class="rounded bg-brand-blue-1 px-5 py-3 font-medium text-white hover:shadow-blue-800">{{ label }} </button>
+    <!-- v-on:click => @click -->
+    <button data-testid="sign-in-btn" @click="signIn"
+        class="rounded bg-brand-blue-1 px-5 py-3 font-medium text-white hover:shadow-blue-800">{{ label }} </button>
 </template>
 <script>
 export default {
@@ -11,11 +13,11 @@ export default {
         }
     },
     methods: {
-        signIn() {
+        signIn(event) {
             this.$emit('signIn')
         }
     }
-    
+
 }
 </script>
   <!-- 
