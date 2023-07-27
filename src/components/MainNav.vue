@@ -1,13 +1,8 @@
 <template>
-  <header class="w-full text-sm">
+  <header class="w-full text-sm h-fit">
     <div class="fixed left-0 top-0 h-16 w-full bg-white">
       <div class="mx-auto flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8">
-        <!-- <a v-bind:href="url" class="flex h-full items-center text-xl">{{ company }}</a> -->
-        <!-- recommeded by vue style guide -->
         <a :href="url" target="_blank" class="flex h-full items-center text-xl" :text="company"></a>
-        <!-- <div v-if="showDescription" class="ml-5 mt-0 flex h-full items-center text-sm">
-          <i>a Ashish Ltd Company.</i>
-        </div> -->
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
             <li v-for="(navItem, index) in navItems" :key="navItem.title" class="h-full"
@@ -25,32 +20,25 @@
           </ul>
         </nav>
       </div>
+      <the-subnav></the-subnav>
     </div>
   </header>
-
-  <div class="relative ml-10 mt-20 flex h-16 w-full flex-row space-x-4 align-middle">
-    <h2 class="">Action Panel</h2>
-    <!-- Toggle btn code: https://codepen.io/lhermann/pen/EBGZRZ -->
-    <button class="h-8 rounded bg-green-600 px-2 font-bold text-white hover:bg-green-700"
-      @click="showDescription = !showDescription">
-      Toggle Me
-    </button>
+  <!-- for loop playground -->
+  <!-- <div class="relative ml-10 mt-20 flex h-16 w-full flex-col space-x-4 align-middle">
+  <h2>For Lop tryouts</h2>
+  <div v-for="item in employees" :key="item.id">
+    <li>{{ item.name }}</li>
   </div>
-  <div class="relative ml-10 mt-20 flex h-16 w-full flex-col space-x-4 align-middle">
-    <h2>For Lop tryouts</h2>
-    <div v-for="item in employees" :key="item.id">
-      <li>{{ item.name }}</li>
-    </div>
-    <!-- Toggle btn code: https://codepen.io/lhermann/pen/EBGZRZ -->
-  </div>
+</div> -->
 </template>
 
 <script>
 import ActionButton from "@/components/ActionButton.vue";
 import ProfileImage from "@/components/ProfileImage.vue";
+import TheSubnav from "./TheSubnav.vue"; "@/components/TheSubnav.vue"
 export default {
   name: "MainNav",
-  components: { ActionButton, ProfileImage },
+  components: { ActionButton, ProfileImage, TheSubnav },
   data() {
     return {
       company: "Dobbs Diaries",
@@ -85,3 +73,4 @@ export default {
   },
 };
 </script>
+
