@@ -13,14 +13,14 @@
                 {{ navItem.title }}</a>
             </li>
             <div class="absolute right-0 mx-2 flex h-full items-center rounded-full px-2 py-2">
-              <ActionButton v-if="!signedIn" text="Sign In" @click="signIn" />
-              <ProfileImage v-else src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png"
+              <action-button v-if="!signedIn" text="Sign In" @click="signIn" />
+              <profile-image v-else src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png"
                 alt="Profile Pic" @click="signOut" />
             </div>
           </ul>
         </nav>
       </div>
-      <the-subnav></the-subnav>
+      <the-subnav v-if="signedIn"></the-subnav>
     </div>
   </header>
   <!-- for loop playground -->
