@@ -13,8 +13,10 @@ export default {
         }
     },
     methods: {
+        //  this was rmed in favour of click handler on the component itself in the calling parent component
         signIn(event) {
-            this.$emit('signIn')
+            return
+            // this.$emit('signIn')
         }
     }
 

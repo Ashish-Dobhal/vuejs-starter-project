@@ -7,7 +7,9 @@ export default {
   props: ['src', 'alt'],
   methods: {
     signOut(event) {
-      this.$emit('signOut')
+      //  this was rmed in favour of click handler on the component itself in the calling parent component
+      return
+      //this.$emit('signOut')
     }
   }
 }

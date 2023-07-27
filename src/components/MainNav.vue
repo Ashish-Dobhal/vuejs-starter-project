@@ -17,9 +17,9 @@
               <a class="flex h-full items-center py-2.5"> {{ navItem.title }}</a>
             </li>
             <div class="h-full flex rounded-full absolute right-0 items-center py-2 px-2 mx-2">
-              <ActionButton v-if="!signedIn" text="Sign In" @signIn="signIn()" />
+              <ActionButton v-if="!signedIn" text="Sign In" @click="signIn" />
               <ProfileImage v-else src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png"
-                alt="Profile Pic" @signOut="signOut()" />
+                alt="Profile Pic" @click="signOut" />
             </div>
           </ul>
         </nav>
@@ -75,10 +75,10 @@ export default {
     isFirstElement(index) {
       return index !== 0
     },
-    signIn() {
+    signIn(_event) {
       this.signedIn = true
     },
-    signOut() {
+    signOut(_event) {
       this.signedIn = false
     }
   }
