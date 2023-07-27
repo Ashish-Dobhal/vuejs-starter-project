@@ -6,6 +6,7 @@ export default {
   name: "ProfileImage",
   props: ['src', 'alt'],
   methods: {
+    // FYI: https://vuejs.org/guide/components/events.html
     signOut(event) {
       //  this was rmed in favour of click handler on the component itself in the calling parent component
       return

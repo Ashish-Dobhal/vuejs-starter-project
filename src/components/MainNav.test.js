@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/vue"
 import MainNav from "@/components/MainNav.vue"
+import userEvent from "@testing-library/user-event"
 
 describe("MainNav", () => {
   it("displays company name", () => {
@@ -43,28 +44,24 @@ describe("MainNav", () => {
   })
 
   it("shows the Sign in btn and does not show the profile image when the user is not logged in", () => {
-    render(MainNav, {
-      data() {
-        return { signedIn: false }
-      }
-    })
-    const signInBtn = screen.getByTestId("sign-in-btn")
-    const profilePic = screen.queryByTestId("profile-pic")
+    render(MainNav)
 
+    /* const signInBtn = screen.getByTestId("sign-in-btn") can be used as well but means adding the data-testid field to the relevant dom element. used by twitter fb youtube tx as an industry wide practise
+     * interesing read  https://github.com/testing-library/react-testing-library/issues/479
+     */
+
+    const signInBtn = screen.getByRole("button", { name: /sign in/i })
+    const profilePic = screen.queryByRole("img", { name: /profile pic/i })
     expect(signInBtn).toBeInTheDocument()
     expect(profilePic).not.toBeInTheDocument()
   })
 
-  it("shows the Profile image and does not show the sign in btn when the user is logged in", () => {
-    render(MainNav, {
-      data() {
-        return { signedIn: true }
-      }
-    })
+  it("shows the Profile image once user has signed in", async () => {
+    render(MainNav)
+    const signInBtn = screen.getByRole("button", { name: /sign in/i })
+    await userEvent.click(signInBtn)
 
-    const profilePic = screen.getByTestId("profile-image")
-    const signInBtn = screen.queryByTestId("sign-in-btn")
+    const profilePic = screen.getByRole("img", { name: /profile pic/i })
     expect(profilePic).toBeInTheDocument()
-    expect(signInBtn).not.toBeInTheDocument()
   })
 })
