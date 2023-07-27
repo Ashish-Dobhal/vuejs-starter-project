@@ -1,31 +1,52 @@
 <template>
-    <!-- v-on:click => @click -->
-    <button data-testid="sign-in-btn" @click="signIn"
-        class="rounded bg-brand-blue-1 px-5 py-3 font-medium text-white hover:shadow-blue-800">{{ label }} </button>
+  <!-- v-on:click => @click -->
+  <!-- [primary ? 'primary' : '', seondary ? 'secondary' : ''] -->
+  <button data-testid="sign-in-btn" :class="buttonClass" @click="signIn">
+    {{ text }}
+  </button>
 </template>
 <script>
 export default {
-    name: "ActionButton",
-    data() {
-        return {
-            signedIn: false,
-            label: 'Sign in'
-        }
+  name: "ActionButton",
+  props: {
+    text: {
+      type: String,
+      required: false,
+      default: "Sign in"
     },
-    methods: {
-        //  this was rmed in favour of click handler on the component itself in the calling parent component
-        signIn(event) {
-            return
-            // this.$emit('signIn')
-        }
+    type: {
+      type: String,
+      required: false,
+      default: "primary",
+      validator(value) {
+        return ["primary", "secondary"].includes(value)
+      }
     }
-
-}
+  },
+  computed: {
+    buttonClass() {
+      return { [this.type]: true };
+      // more readble above is a js dynamic property style
+      // return {
+      //     primary: this.type == 'primary',
+      //     secondary: this.type == 'secondary',
+      // }
+    },
+  },
+};
 </script>
-  <!-- 
-    - styles can leak across the entire component hierarchy if not scoped
-    - its not just a parent to child thing its across the component irrespective of the component hierarchy
-    - scoped limits styles escaping from this component but doesnt involve styles entering into the component
-    - best practise always have scoped component styles
-   -->
-  
+<style scoped>
+/* GOTCHA: https://www.codeconcisely.com/posts/tailwind-css-unknown-at-rules/ */
+/* https://stackoverflow.com/questions/68147904/adding-a-space-after-colon-using-css-and-html causes issues in adding classes such as hover:text-brand-1 */
+button {
+  @apply rounded px-5 py-3 font-medium;
+}
+
+.primary {
+  @apply border-0 bg-brand-blue-1 text-white;
+}
+
+.secondary {
+  @apply bg-transparent text-brand-blue-1;
+}
+</style>

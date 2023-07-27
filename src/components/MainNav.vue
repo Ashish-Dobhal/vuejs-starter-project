@@ -4,19 +4,20 @@
       <div class="mx-auto flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8">
         <!-- <a v-bind:href="url" class="flex h-full items-center text-xl">{{ company }}</a> -->
         <!-- recommeded by vue style guide -->
-        <a v-bind:href="url" target="_blank" class="flex h-full items-center text-xl" :text="company"></a>
+        <a :href="url" target="_blank" class="flex h-full items-center text-xl" :text="company"></a>
         <!-- <div v-if="showDescription" class="ml-5 mt-0 flex h-full items-center text-sm">
           <i>a Ashish Ltd Company.</i>
         </div> -->
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
-            <li class="h-full" :class="['h-full', index !== 0 ? 'ml-9' : '']" v-for="(navItem, index) in navItems"
-              :key="navItem.title">
+            <li v-for="(navItem, index) in navItems" :key="navItem.title" class="h-full"
+              :class="['h-full', index !== 0 ? 'ml-9' : '']">
               <!-- FYI https://stackoverflow.com/questions/50766775/vue-v-for-conditional-styling -->
               <!-- :class="{'ml-9': index!==0" this works too for single properties -->
-              <a class="flex h-full items-center py-2.5"> {{ navItem.title }}</a>
+              <a class="flex h-full items-center py-2.5">
+                {{ navItem.title }}</a>
             </li>
-            <div class="h-full flex rounded-full absolute right-0 items-center py-2 px-2 mx-2">
+            <div class="absolute right-0 mx-2 flex h-full items-center rounded-full px-2 py-2">
               <ActionButton v-if="!signedIn" text="Sign In" @click="signIn" />
               <ProfileImage v-else src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png"
                 alt="Profile Pic" @click="signOut" />
@@ -58,7 +59,7 @@ export default {
       showDescription: false,
       employees: [
         { id: 2, name: "Ashish" },
-        { id: 1, name: "Nupur" }
+        { id: 1, name: "Nupur" },
       ],
       navItems: [
         { title: "Teams", url: "www.google.com" },
@@ -66,22 +67,21 @@ export default {
         { title: "Life at Dobbs Diaries", url: "www.google.com" },
         { title: "How we Hire", url: "www.google.com" },
         { title: "Students", url: "www.google.com" },
-        { title: "Jobs", url: "www.google.com" }
+        { title: "Jobs", url: "www.google.com" },
       ],
-      signedIn: false
-    }
+      signedIn: false,
+    };
   },
   methods: {
     isFirstElement(index) {
-      return index !== 0
+      return index !== 0;
     },
     signIn(_event) {
-      this.signedIn = true
+      this.signedIn = true;
     },
     signOut(_event) {
-      this.signedIn = false
-    }
-  }
-
-}
+      this.signedIn = false;
+    },
+  },
+};
 </script>
