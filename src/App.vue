@@ -1,13 +1,27 @@
 
 <template>
-  <MainNav />
+  <main-nav />
+  <the-hero />
 </template>
 <script>
+/**
+* - Each *.vue file can contain at most one < script > block(excluding < script setup >).
+- The script is executed as an ES Module.
+- The default export should be a Vue component options object, either as a plain object or as the return value of defineComponent.  
+- setup https://stackoverflow.com/questions/69597342/using-script-setup-in-vuejs-2-x (vue js 2 compiler does it thus no concept of script)
+*/
+
+/**
+ * default exports gotcha https://stackoverflow.com/questions/46913851/why-and-when-to-use-default-export-over-named-exports-in-es6-modules
+ * default export imports can be referenced by any name the programmer decides on
+ */
 import MainNav from '@/components/MainNav.vue';
+import TheHero from './components/TheHero.vue';
 export default {
   name: "App",
   components: {
-    MainNav
+    MainNav,
+    TheHero
   }
 }
 </script>

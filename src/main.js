@@ -9,4 +9,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import App from "@/App.vue"
 library.add(faSearch)
 
+/**
+ * global component registration https://vuejs.org/guide/components/registration.html
+ */
+
 createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app")

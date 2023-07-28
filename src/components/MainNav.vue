@@ -73,7 +73,6 @@ export default {
   },
   computed: {
     headerHeightClass() {
-      // return [!this.signedIn ? 'h-16' : 'h-32']
       return {
         'h-16': !this.signedIn,
         'h-32': this.signedIn,
