@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 class="font-extrabold, text-8xl tracking-tighter mb-14 font-bold">
-      <span :class="[actionCssClasses]">{{ currentAction }} </span>
+      <span :class="[actionColorClasses]">{{ currentAction }} </span>
       <br />
       <span class="'font-bold', text-8xl text-brand-gray-2">For everyone</span>
     </h1>
@@ -9,6 +9,7 @@
   </section>
 </template>
 <script>
+import { nextElementInList } from "@/utils/array-utils"
 export default {
   data() {
     return {
@@ -18,20 +19,15 @@ export default {
     }
   },
   computed: {
-    actionCssClasses() {
+    actionColorClasses() {
       return {
-        'text-brand-blue-1': this.currentAction === this.allActions[0],
-        'text-brand-green-1': this.currentAction === this.allActions[1],
-        'text-orange-600': this.currentAction === this.allActions[2],
-        'text-purple-600': this.currentAction === this.allActions[3],
+        [this.currentAction.toLocaleLowerCase()]: true
       }
     }
   },
   created() {
     this.interval = setInterval(() => {
-      const currentActionIdx = this.allActions.indexOf(this.currentAction)
-      const nextActionIdx = (currentActionIdx + 1) % 4
-      this.currentAction = this.allActions[nextActionIdx];
+      this.currentAction = nextElementInList(this.allActions, this.currentAction);
     }, 2000);
   },
   unmounted() {
@@ -39,3 +35,20 @@ export default {
   }
 }
 </script>
+<style scoped>
+.build {
+  @apply text-brand-blue-1
+}
+
+.code {
+  @apply text-brand-green-1
+}
+
+.design {
+  @apply text-orange-500
+}
+
+.create {
+  @apply text-purple-500
+}
+</style>
