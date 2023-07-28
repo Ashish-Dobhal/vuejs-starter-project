@@ -11,12 +11,11 @@ describe("ActionButton", () => {
     })
     // screen.debug();
     const button = screen.getByRole("button", { name: /click me/i })
-    screen.debug()
     expect(button).toBeInTheDocument()
   })
 
   it(`a primary type button contains the primary class name`, () => {
-    const renderResult = render(ActionButton, {
+    render(ActionButton, {
       props: {
         text: "Click me",
         type: "primary"
@@ -28,7 +27,7 @@ describe("ActionButton", () => {
   })
 
   it(`a secondary type button contains the secondary class name`, () => {
-    const renderResult = render(ActionButton, {
+    render(ActionButton, {
       props: {
         text: "Click me",
         type: "secondary"
