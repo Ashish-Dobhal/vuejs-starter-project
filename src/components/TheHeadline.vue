@@ -9,8 +9,14 @@
   </section>
 </template>
 <script>
-import { nextElementInList } from "@/utils/array-utils"
+import nextElementInList from "@/utils/array-utils"
 export default {
+  created() {
+    this.changeTitle()
+  },
+  beforeUnmount() {
+    clearInterval(this.interval)
+  },
   data() {
     return {
       allActions: ["Create", "Build", "Design", "Code"],
@@ -25,14 +31,13 @@ export default {
       }
     }
   },
-  created() {
-    this.interval = setInterval(() => {
-      this.currentAction = nextElementInList(this.allActions, this.currentAction);
-    }, 2000);
+  methods: {
+    changeTitle() {
+      this.interval = setInterval(() => {
+        this.currentAction = nextElementInList(this.allActions, this.currentAction);
+      }, 2000);
+    }
   },
-  unmounted() {
-    clearInterval(this.interval)
-  }
 }
 </script>
 <style scoped>
