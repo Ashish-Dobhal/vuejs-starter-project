@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/vue"
-import TheSubnavVue from "./TheSubnav.vue"
+import TheSubnavVue from "@/components/TheSubnav.vue"
 
 describe("TheSubNav", () => {
   describe("when user is not on the jobs page", () => {
