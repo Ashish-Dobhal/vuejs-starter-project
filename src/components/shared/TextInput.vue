@@ -1,17 +1,19 @@
 <template>
-  <input type="text" :value="value" @input="handleInput" class="w-full text-lg font-normal focus:outline-none" />
+  <input type="text" :value="modelValue" @input="handleInput" class="w-full text-lg font-normal focus:outline-none" />
 </template>
 <script>
 export default {
   name: "TextInput",
-  data() {
-    return { value: "" }
+  props: {
+    modelValue: {
+      type: String,
+      required: true
+    }
   },
-  emits: ['handle-input'],
+  emits: ['update:modelValue'],
   methods: {
     handleInput($event) {
-      this.value = $event.target.value
-      this.$emit('handle-input', $event.target.value)
+      this.$emit('update:modelValue', $event.target.value)
     }
   }
 }
