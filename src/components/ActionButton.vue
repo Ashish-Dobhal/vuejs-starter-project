@@ -39,14 +39,22 @@ export default {
 /* GOTCHA: https://www.codeconcisely.com/posts/tailwind-css-unknown-at-rules/ */
 /* https://stackoverflow.com/questions/68147904/adding-a-space-after-colon-using-css-and-html causes issues in adding classes such as hover:text-brand-1 */
 button {
-  @apply rounded px-5 py-3 font-medium;
+  @apply px-5 py-3 font-medium;
 }
 
 .primary {
-  @apply border-0 bg-brand-blue-1 text-white;
+  @apply rounded bg-brand-blue-1 text-white;
+}
+
+.primary:hover {
+  @apply shadow-blue-700
 }
 
 .secondary {
   @apply bg-transparent text-brand-blue-1;
+}
+
+.secondary:hover {
+  @apply bg-brand-blue-1 text-white
 }
 </style>

@@ -10,9 +10,11 @@ module.exports = {
       },
       colors: {
         "brand-gray-1": "#dadce0",
-        "brand-gray-2": "#202124",
+        "brand-gray-2": "#f8f9fa",
+        "brand-gray-3": "#5f6368",
         "brand-blue-1": "#1967d2",
         "brand-green-1": "#137333",
+        "brand-black-1": "#202124",
         boxShadow: {
           blue: "0 0 3px 3px #4285f4"
         }
