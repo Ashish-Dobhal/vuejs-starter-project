@@ -2,15 +2,15 @@
   <header :class="['w-full', 'text-sm', headerHeightClass]">
     <div class="fixed left-0 top-0 h-16 w-full bg-white">
       <div class="mx-auto flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8">
-        <a :href="url" target="_blank" class="flex h-full items-center text-xl" :text="company"></a>
+        <router-link :to="{ name: 'Home' }" class="flex h-full items-center text-xl" :text="company"></router-link>
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
             <li v-for="(navItem, index) in navItems" :key="navItem.title" class="h-full"
               :class="['h-full', index !== 0 ? 'ml-9' : '']">
               <!-- FYI https://stackoverflow.com/questions/50766775/vue-v-for-conditional-styling -->
               <!-- :class="{'ml-9': index!==0" this works too for single properties -->
-              <a class="flex h-full items-center py-2.5">
-                {{ navItem.title }}</a>
+              <router-link to="" class="flex h-full items-center py-2.5">
+                {{ navItem.title }}</router-link>
             </li>
             <div class="absolute right-0 mx-2 flex h-full items-center rounded-full px-2 py-2">
               <action-button v-if="!signedIn" text="Sign In" @click="signIn" />

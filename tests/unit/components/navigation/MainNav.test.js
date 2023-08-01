@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/vue"
 import MainNav from "@/components/navigation/MainNav.vue"
 import userEvent from "@testing-library/user-event"
+import { RouterLinkStub } from "@vue/test-utils"
 describe("MainNav", () => {
   it("displays company name", () => {
     renderMainNav()
@@ -36,7 +37,7 @@ describe("MainNav", () => {
     expect(profilePic).not.toBeInTheDocument()
   })
 
-  it.only("shows the Profile image once user has signed in", async () => {
+  it("shows the Profile image once user has signed in", async () => {
     renderMainNav()
     const signInBtn = screen.getByRole("button", { name: /sign in/i })
     await userEvent.click(signInBtn)
@@ -51,7 +52,8 @@ function renderMainNav() {
   render(MainNav, {
     global: {
       stubs: {
-        FontAwesomeIcon: true
+        FontAwesomeIcon: true,
+        RouterLink: RouterLinkStub
       }
     }
   })
