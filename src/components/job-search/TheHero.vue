@@ -1,6 +1,6 @@
 <template>
   <main class="pt-10">
-    <section class="h-screen pt-10 pb-20 m-auto lg:max-w-7xl xs:max-w-xl sm:max-w-4xl md:max-w-7xl">
+    <section class="pt-10 pb-20 m-auto lg:max-w-7xl xs:max-w-xl sm:max-w-4xl md:max-w-7xl">
       <div class="grid grid-cols-12">
         <div class="col-span-1 col-start-1 sm:order-1">
         </div>
