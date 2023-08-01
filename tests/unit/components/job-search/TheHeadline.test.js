@@ -60,7 +60,6 @@ describe.only("The Headline", () => {
     unmount()
     expect(clearInterval).toHaveBeenCalled()
   })
-
   afterEach(() => {
     vi.useRealTimers()
     vi.unstubAllGlobals()
