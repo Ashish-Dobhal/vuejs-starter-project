@@ -15,8 +15,8 @@
  * default exports gotcha https://stackoverflow.com/questions/46913851/why-and-when-to-use-default-export-over-named-exports-in-es6-modules
  * default export imports can be referenced by any name the programmer decides on
  */
-import MainNav from '@/components/MainNav.vue';
-import TheHero from './components/TheHero.vue';
+import MainNav from '@/components/navigation/MainNav.vue';
+import TheHero from './components/job-search/TheHero.vue';
 export default {
   name: "App",
   components: {

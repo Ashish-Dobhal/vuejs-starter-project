@@ -4,11 +4,12 @@
       <div class="grid grid-cols-12">
         <div class="col-span-1 col-start-1 sm:order-1">
         </div>
-        <div class="col-span-7 col-start-2 sm:order-1">
+        <div class="col-span-5 col-start-2 sm:order-1">
           <the-headline></the-headline>
         </div>
-        <div class="col-start-9 col-span-5 content-start sm:order-2 items-center mt-20">
-          <img src="../../assets/hero_image.png" class="opacity-60" />
+        <div class="col-start-7 col-span-5  sm:order-2 self-center justify-self-center">
+          <!-- course image https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png -->
+          <img src="../../../assets/hero_image.png" class="h-80 opacity-60" />
         </div>
       </div>
     </section>
@@ -16,11 +17,11 @@
 </template>
 
 <script>
-import TheHeadline from "@/components/TheHeadline.vue"
-import JobSearchForm from '@/components/JobSearchForm.vue'
+import TheHeadline from "@/components/job-search/TheHeadline.vue"
+import JobSearchForm from '@/components/job-search/JobSearchForm.vue'
 export default {
   name: "TheHero",
-  components: { TheHeadline },
+  components: { TheHeadline, JobSearchForm },
   beforeCreate() {
     console.log("componet abt to be created")
   },

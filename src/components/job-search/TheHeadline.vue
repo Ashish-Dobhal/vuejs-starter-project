@@ -3,7 +3,7 @@
     <h1 class="font-bold max-sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter mb-14 w-fit">
       <span :class="[actionColorClasses]">{{ currentAction }} </span>
       <br />
-      <span class="font-bold max-sm:text-6xl md:text-7xl lg:text-8xl  text-brand-black-1">For everyone</span>
+      <span class="font-bold max-sm:text-6xl md:text-7xl lg:text-7xl  text-brand-black-1">For everyone</span>
     </h1>
     <h2 class="xs:text-2xl sm:text-2xl md:text-3xl lg:text-4xl  text-black">Find your next job at Dobbs Diaries</h2>
   </section>
@@ -11,7 +11,7 @@
 </template>
 <script>
 import nextElementInList from "@/utils/array-utils"
-import JobSearchForm from "@/components/JobSearchForm.vue"
+import JobSearchForm from "@/components/job-search/JobSearchForm.vue"
 
 export default {
   components: { JobSearchForm },
