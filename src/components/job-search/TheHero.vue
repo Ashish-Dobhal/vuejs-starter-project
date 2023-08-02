@@ -1,17 +1,16 @@
 <template>
   <main>
-    <section class="flex h-screen flex-col pb-20 pt-10">
-      <div class="grid grid-cols-12">
+    <section class="flex flex-col pb-20 pt-28 mx-auto my-0" style="max-width: 1440px;">
+      <div class="grid grid-cols-24">
         <div class="col-span-1 col-start-1"></div>
-
-        <div class="col-span-5 col-start-2">
+        <div class="col-span-10 col-start-2">
           <the-headline />
           <job-search-form />
         </div>
-        <div class="col-span-5 col-start-7 self-center justify-self-center">
-          <img class="h-100 w-100 opacity-60" src="../../../assets/hero_image.png" />
+        <div class="col-start-12 col-span-2"></div>
+        <div class=" col-start-14 col-span-10 self-center justify-self-center">
+          <img class="opacity-60 w-100 h-100" src="../../../assets/hero_image_1.png" />
         </div>
-        <div class="col-span-1 col-start-12"></div>
       </div>
     </section>
   </main>

@@ -1,9 +1,9 @@
 <template>
   <section class="w-fit bg-red mb-16">
-    <h1 class="font-bold max-sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter mb-14 w-fit">
+    <h1 class="font-bold text-8xl tracking-tighter mb-14 w-fit">
       <span :class="[actionColorClasses]">{{ currentAction }} </span>
       <br />
-      <span class="font-bold max-sm:text-6xl md:text-7xl lg:text-7xl  text-brand-black-1">For everyone</span>
+      <span class="font-bold text-8xl text-brand-black-1">For everyone</span>
     </h1>
     <h2 class="xs:text-2xl sm:text-2xl md:text-3xl lg:text-4xl  text-black">Find your next job at Dobbs Diaries</h2>
   </section>

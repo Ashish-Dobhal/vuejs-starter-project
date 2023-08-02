@@ -4,13 +4,13 @@
     <font-awesome-icon :icon="['fas', 'search']" class="ml-4 mr-3" />
     <div class=" relative flex flex-1 flex-nowrap h-full text-base font-light">
       <div class="flex h-full flex-1 relative items-center pr-3"></div>
-      <label for="role" class="absolute left-0 -top-9">Role</label>
+      <label for="role" class="absolute left-0 -top-9 brand-gray-4 font-light">Role</label>
       <text-input id="role" placeholder="Software engineer" v-model="role"></text-input>
     </div>
     <span class="flex items-center h-full border-l border-r border-brand-gray-3 bg-brand-gray-2 px-3">in</span>
     <div class=" relative flex flex-1 flex-nowrap h-full text-base font-light">
       <div class="flex h-full flex-1 relative items-center pr-3"></div>
-      <label for="location" class="absolute left-0 -top-9">Where?</label>
+      <label for="location" class="absolute left-0 -top-9 brand-gray-4 font-light">Where?</label>
       <text-input id="location" placeholder="London" v-model="location"></text-input>
     </div>
     <action-button text="Search" type="secondary" class="rounded-r-3xl"></action-button>

@@ -8,10 +8,15 @@ module.exports = {
       fontFamily: {
         sans: ["Open Sans", ...defaultTheme.fontFamily.sans]
       },
+      gridTemplateColumns: {
+        // 24 column grid
+        24: "repeat(24, minmax(0, 1fr))"
+      },
       colors: {
         "brand-gray-1": "#dadce0",
         "brand-gray-2": "#f8f9fa",
         "brand-gray-3": "#5f6368",
+        "brand-gray-4": "rgb(32, 33, 36)",
         "brand-blue-1": "#1967d2",
         "brand-green-1": "#137333",
         "brand-black-1": "#202124",
