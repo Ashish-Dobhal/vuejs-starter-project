@@ -1,16 +1,17 @@
 <template>
-  <main class="pt-10">
-    <section class="pt-10 pb-20 m-auto lg:max-w-7xl xs:max-w-xl sm:max-w-4xl md:max-w-7xl">
+  <main>
+    <section class="flex h-screen flex-col pb-20 pt-10">
       <div class="grid grid-cols-12">
-        <div class="col-span-1 col-start-1 sm:order-1">
+        <div class="col-span-1 col-start-1"></div>
+
+        <div class="col-span-5 col-start-2">
+          <the-headline />
+          <job-search-form />
         </div>
-        <div class="col-span-5 col-start-2 sm:order-1">
-          <the-headline></the-headline>
+        <div class="col-span-5 col-start-7 self-center justify-self-center">
+          <img class="h-100 w-100 opacity-60" src="../../../assets/hero_image.png" />
         </div>
-        <div class="col-start-7 col-span-5  sm:order-2 self-center justify-self-center">
-          <!-- course image https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png -->
-          <img src="../../../assets/hero_image.png" class="h-80 opacity-60" />
-        </div>
+        <div class="col-span-1 col-start-12"></div>
       </div>
     </section>
   </main>

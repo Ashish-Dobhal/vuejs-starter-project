@@ -7,7 +7,6 @@
     </h1>
     <h2 class="xs:text-2xl sm:text-2xl md:text-3xl lg:text-4xl  text-black">Find your next job at Dobbs Diaries</h2>
   </section>
-  <job-search-form />
 </template>
 <script>
 import nextElementInList from "@/utils/array-utils"

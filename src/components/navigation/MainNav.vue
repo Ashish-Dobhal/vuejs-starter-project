@@ -9,7 +9,7 @@
               :class="['h-full', index !== 0 ? 'ml-9' : '']">
               <!-- FYI https://stackoverflow.com/questions/50766775/vue-v-for-conditional-styling -->
               <!-- :class="{'ml-9': index!==0" this works too for single properties -->
-              <router-link to="" class="flex h-full items-center py-2.5">
+              <router-link :to="navItem.to" class="flex h-full items-center py-2.5">
                 {{ navItem.title }}</router-link>
             </li>
             <div class="absolute right-0 mx-2 flex h-full items-center rounded-full px-2 py-2">
@@ -50,12 +50,13 @@ export default {
         { id: 1, name: "Nupur" },
       ],
       navItems: [
-        { title: "Teams", url: "www.google.com" },
-        { title: "Location", url: "www.google.com" },
-        { title: "Life at Dobbs Diaries", url: "www.google.com" },
-        { title: "How we Hire", url: "www.google.com" },
-        { title: "Students", url: "www.google.com" },
-        { title: "Jobs", url: "www.google.com" },
+        { title: "Teams", to: { name: "Home" } },
+        { title: "Location", to: { name: "Home" } },
+        { title: "Location", to: { name: "Home" } },
+        { title: "Life at Dobbs Diaries", to: { name: "Home" } },
+        { title: "How we Hire", to: { name: "Home" } },
+        { title: "Students", to: { name: "Home" } },
+        { title: "Jobs", to: { name: "JobResults" } },
       ],
       signedIn: false,
     };
