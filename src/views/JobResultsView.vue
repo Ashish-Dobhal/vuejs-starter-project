@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-6xl font-bold">Jobs View</h1>
+  <h1 class="text-6xl font-bold">Jobs View {{ $route.query["location"] }}</h1>
 </template>
 <script>
 export default {
