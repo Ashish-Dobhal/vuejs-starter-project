@@ -52,7 +52,6 @@ export default {
       navItems: [
         { title: "Teams", to: { name: "Home" } },
         { title: "Location", to: { name: "Home" } },
-        { title: "Location", to: { name: "Home" } },
         { title: "Life at Dobbs Diaries", to: { name: "Home" } },
         { title: "How we Hire", to: { name: "Home" } },
         { title: "Students", to: { name: "Home" } },

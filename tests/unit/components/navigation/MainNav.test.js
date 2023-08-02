@@ -51,6 +51,9 @@ describe("MainNav", () => {
 function renderMainNav() {
   render(MainNav, {
     global: {
+      mocks: {
+        $route: { name: "Home" }
+      },
       stubs: {
         FontAwesomeIcon: true,
         RouterLink: RouterLinkStub
