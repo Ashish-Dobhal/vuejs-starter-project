@@ -1,7 +1,8 @@
 <template>
-  <h1>Job Details for job {{ id }}</h1>
+  <h1>{{ jobDetails }}</h1>
 </template>
 <script>
+import axios from "axios"
 export default {
   name: "Job View",
   props: {
@@ -10,8 +11,12 @@ export default {
       required: true
     }
   },
-  mounted() {
+  data() {
+    return { jobDetails: null }
+  },
+  async mounted() {
     console.log(this.id)
+    this.jobDetails = (await axios.get(`http://localhost:3000/jobs/${this.id}`)).data
   }
 }
 </script>

@@ -1,3 +1,9 @@
-export const evenOrOdd = (number) => (number % 2 == 0 ? "Even" : "Odd")
+const axios = require("axios")
 
-export const multiply = (numA, numB) => numA * numB
+async function getAllJobs() {
+  const url = "http://localhost:3000/jobs"
+  const response = await axios.get(url)
+  console.log(response)
+}
+
+getAllJobs()
