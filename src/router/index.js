@@ -26,7 +26,10 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  linkActiveClass: "active-link-class" //if we need to customise the active link class
+  linkActiveClass: "active-link-class", //if we need to customise the active link class
+  scrollBehavior() {
+    return { top: 0, left: 0, behavior: "smooth" }
+  }
 })
 
 export default router
