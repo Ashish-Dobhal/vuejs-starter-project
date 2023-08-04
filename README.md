@@ -153,6 +153,92 @@ const UserDetails = () => import("./UserDetails.vue")
 
 ### navigation guards: https://router.vuejs.org/guide/advanced/navigation-guards.html
 
+# testing
+
+- vue provided test utils https://v1.test-utils.vuejs.org
+- https://testing-library.com/docs/vue-testing-library/intro/ this lib wraps around vue test utils and provides a better api surface
+
+## router link stubbing
+
+```js
+import { RouterLinkStub } from "vue/test-utils"
+// component with router link
+function renderMainNav() {
+  render(MainNav, {
+    global: {
+      mocks: {
+        $route: { name: "Home" }
+      },
+      stubs: {
+        FontAwesomeIcon: true,
+        RouterLink: RouterLinkStub
+      }
+    }
+  })
+
+  // component with router link stub test
+  expect(wrapper.findComponent(RouterLinkStub).props().to).toBe("/some/path")
+}
+```
+
+## $router object related tests
+
+```js
+// stubbing $router
+const push = vi.fn()
+const $router = { push }
+render(JobSearchForm, {
+  global: {
+    mocks: { $router },
+    stubs: {
+      RouterLink: RouterLinkStub
+    // "router-link": RouterLinkStub (this works as well)
+    }
+  }
+})
+
+// testing a $stubbed router instance
+expect($router.push).toHaveBeenCalledWith({
+  name: "JobResults",
+  query: { role: "Engineer", location: "London" }
+  })
+})
+
+```
+
+- [$route stubbing and testing in vue js explained](https://stackoverflow.com/questions/41458736/how-to-write-test-that-mocks-the-route-object-in-vue-components)
+
+## mocking a node module example: http or axios
+
+```js
+import { beforeEach, describe, expect, test, vi } from "vitest"
+import { createUser, fetchUsers } from "./rest-api.service"
+import axios from "axios"
+
+vi.mock("axios")
+
+describe("API  Service", () => {
+  describe("fetchData", () => {
+    /*
+     * Finally, reset the mocked methods so that we have an empty call history before each test. This will help us evade false positives, where the method has been called in an earlier test while we * expect it to be called in a current one
+     * @example: https://runthatline.com/how-to-mock-axios-with-vitest/
+     */
+    beforeEach(() => {
+      axios.get.mockReset()
+    })
+    test("makes a GET request to fetch data", async () => {
+      const dataMock = [{ id: 1 }, { id: 2 }]
+      renderComponent()
+      axios.get.mockResolvedValue({ data: dataMock })
+      expect(axios.get).toHaveBeenCalledWith("https://api.data.com/data/123")
+      expect(component.data).toStrictEqual(dataMock)
+    })
+  })
+})
+```
+
+- 💡 findBy vs getBy findBy methods are async whereas getBy are sync. use findBy+await when testing a component with a async action such as a http rest call etc
+
 # job-search
 
 This template should help get you started developing with Vue 3 in Vite.
