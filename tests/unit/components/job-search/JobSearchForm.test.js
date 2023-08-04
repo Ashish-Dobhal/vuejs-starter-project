@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/vue"
 import userEvent from "@testing-library/user-event"
+import { RouterLinkStub } from "@vue/test-utils"
 import JobSearchForm from "@/components/job-search/JobSearchForm.vue"
 
 describe("JobSearchForm", () => {
@@ -13,7 +14,8 @@ describe("JobSearchForm", () => {
             $router
           },
           stubs: {
-            FontAwesomeIcon: true
+            FontAwesomeIcon: true,
+            RouterLink: RouterLinkStub
           }
         }
       })

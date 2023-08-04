@@ -10,9 +10,10 @@
             <font-awesome-icon :icon="['fas', 'building']" class="ml-4 mr-3" />
             <span>{{ job.organization }}</span>
           </div>
-          <div class="mr-5">
+          <div class="mr-5" v-if="job.locations">
             <font-awesome-icon :icon="['fas', 'fa-location-dot']" class="ml-4 mr-3" />
-            <span class="mr-2 locations" v-for="location in job.locations" :key="location">{{ location }}</span>
+            <span class="mr-2 locations" v-for="location in job.locations" :key="location">{{ location
+            }}</span>
           </div>
           <div class="mr-5">
             <font-awesome-icon :icon="['fas', 'fa-chart-simple']" class="ml-4 mr-3" />
@@ -25,7 +26,7 @@
         <div>
           <h3 class="mt-1 mb-2 font-semibold">Minimum Qualifications</h3>
           <div>
-            <ul class="list-disc pl-8">
+            <ul v-if="job.minimumQualifications" class="list-disc pl-8">
               <li v-for="qualification in job.minimumQualifications" :key="qualification">{{ qualification }}</li>
             </ul>
           </div>
@@ -41,7 +42,8 @@ export default {
   props: {
     job: {
       type: Object,
-      required: true
+      required: true,
+      default: {}
     }
   },
   computed: {
