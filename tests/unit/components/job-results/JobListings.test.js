@@ -10,7 +10,7 @@ describe("JobListings", () => {
     axios.get.mockResolvedValue({ data: [] })
     renderJobListings()
 
-    expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/jobs")
+    expect(axios.get).toHaveBeenCalledWith("http://myfakeapi.com/jobs")
   })
 
   it("creates a job listing for every job", async () => {
@@ -32,26 +32,35 @@ describe("JobListings", () => {
     it("disabled the previous btn", async () => {
       axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       renderJobListings({ name: "JobResults", query: {} })
-      const prevBtn = await (await screen.findByTestId("pagination")).children[1]
-      expect(prevBtn.className).toContain("disabled")
+      const prevPageBtn = await (await screen.findByTestId("pagination")).children[1]
+      expect(prevPageBtn.className).toContain("disabled")
     })
   })
 
   describe("when params include page number", () => {
-    it("displays page number in params", async () => {
+    it("displays the page number", async () => {
       axios.get.mockResolvedValue({ data: Array(15).fill({}) })
       renderJobListings({ name: "JobResults", query: { page: 2 } })
       const jobListings = await screen.findByTestId("pagination")
       expect(jobListings.children[2].textContent.trim()).toEqual("11 - 15 of 15 jobs")
     })
+  })
 
-    describe("and the param is the last page number", () => {
-      it("the next btn is disabled", async () => {
-        axios.get.mockResolvedValue({ data: Array(15).fill({}) })
-        renderJobListings({ name: "JobResults", query: { page: 2 } })
-        const nextBtn = await (await screen.findByTestId("pagination")).children[0]
-        expect(nextBtn.className).toContain("disabled")
-      })
+  describe("when the user is on the first page", () => {
+    it("the prev btn is disabled", async () => {
+      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
+      renderJobListings({ name: "JobResults", query: { page: 1 } })
+      const prevPageBtn = (await screen.findByTestId("pagination")).children[1]
+      expect(prevPageBtn.className).toContain("disabled")
+    })
+  })
+
+  describe("when the user is on the last page", () => {
+    it("the next btn is disabled", async () => {
+      axios.get.mockResolvedValue({ data: Array(15).fill({}) })
+      renderJobListings({ name: "JobResults", query: { page: 2 } })
+      const nextPageBtn = (await screen.findByTestId("pagination")).children[0]
+      expect(nextPageBtn.className).toContain("disabled")
     })
   })
 })

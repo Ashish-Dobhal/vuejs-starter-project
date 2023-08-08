@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 import ActionButton from "@/components/shared/ActionButton.vue";
 import ProfileImage from "@/components/navigation/ProfileImage.vue";
 import TheSubnav from "@/components/navigation/TheSubnav.vue"
@@ -57,7 +58,6 @@ export default {
         { title: "Students", to: { name: "Home" } },
         { title: "Jobs", to: { name: "JobResults" } },
       ],
-      signedIn: false,
     };
   },
   methods: {
@@ -65,19 +65,20 @@ export default {
       return index !== 0;
     },
     signIn(_event) {
-      this.signedIn = true;
+      this.$store.dispatch('user/login')
     },
     signOut(_event) {
-      this.signedIn = false;
+      this.$store.dispatch('user/logout')
     },
   },
   computed: {
+    ...mapGetters({ signedIn: 'user/signedIn' }), // this is done as we are using a namespaced module
     headerHeightClass() {
       return {
         'h-16': !this.signedIn,
         'h-32': this.signedIn,
       }
-    }
+    },
   }
 };
 
