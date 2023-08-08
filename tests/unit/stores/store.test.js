@@ -12,10 +12,6 @@ describe("Vuex Global Store", () => {
     })
   })
 
-  it.only("state value", () => {
-    console.log(store.state)
-  })
-
   it("sets signedIn to true when login is called", () => {
     store.dispatch("user/login")
     expect(store.state.user.signedIn).toBe(true)

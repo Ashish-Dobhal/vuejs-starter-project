@@ -23,13 +23,6 @@
       <the-subnav v-if="signedIn"></the-subnav>
     </div>
   </header>
-  <!-- for loop playground -->
-  <!-- <div class="relative ml-10 mt-20 flex h-16 w-full flex-col space-x-4 align-middle">
-  <h2>For Lop tryouts</h2>
-  <div v-for="item in employees" :key="item.id">
-    <li>{{ item.name }}</li>
-  </div>
-</div> -->
 </template>
 
 <script>

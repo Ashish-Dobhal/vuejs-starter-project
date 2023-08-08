@@ -326,6 +326,8 @@ getters: {
 
 ## Advanced read thoughs
 
+- The action can commit more than 1 mutation at a time, it just implements the business logic, it doesn't care about data changing (which is managed by mutation)
+- https://stackoverflow.com/questions/39299042/vuex-action-vs-mutations
 - [Preserving state while SSR](https://vuex.vuejs.org/guide/modules.html#preserving-state)
 
 ## application structure bst practises

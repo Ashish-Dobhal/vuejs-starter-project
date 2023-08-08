@@ -19,6 +19,7 @@ const mutations = {
 
 const actions = {
   login({ commit, state }) {
+    console.log("login ===============")
     commit("login")
   },
   logout({ commit, state }) {

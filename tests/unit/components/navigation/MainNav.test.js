@@ -2,7 +2,12 @@ import { render, screen } from "@testing-library/vue"
 import MainNav from "@/components/navigation/MainNav.vue"
 import userEvent from "@testing-library/user-event"
 import { RouterLinkStub } from "@vue/test-utils"
+import { mockStore } from "../../stores/helpers"
 
+/**
+ * int testing component with the store: https://interactivebrokers.udemy.com/course/vue-masterclass/learn/lecture/35054114#overview
+ * testing components in isolatin with the store: https://interactivebrokers.udemy.com/course/vue-masterclass/learn/lecture/35054116#overview
+ */
 describe("MainNav", () => {
   it("displays company name", () => {
     renderMainNav()
@@ -42,8 +47,7 @@ describe("MainNav", () => {
     renderMainNav()
     const signInBtn = screen.getByRole("button", { name: /sign in/i })
     await userEvent.click(signInBtn)
-
-    const profilePic = screen.getByRole("img", { name: /profile pic/i })
+    const profilePic = await screen.findByRole("img", { name: /profile pic/i })
     expect(profilePic).toBeInTheDocument()
   })
 })
@@ -55,6 +59,7 @@ function renderMainNav() {
       mocks: {
         $route: { name: "Home" }
       },
+      plugins: [mockStore],
       stubs: {
         FontAwesomeIcon: true,
         RouterLink: RouterLinkStub
@@ -62,9 +67,30 @@ function renderMainNav() {
     }
   })
 }
+
 // GOTCHA: this leads to a tight coupling bw the component and its tests. ie if the internal name of the data.company change that leads to abroken test thus can be avoided unless required
 //     {
 //     data() {
 //         return { company: "Dobbs Diaries"}
 //     }
 // }
+
+/** using store wit a mock with mock actions and mutations
+ *  it('shows profile picture when logged in', async () => {
+    const wrapper = mount(YourComponent, {
+      localVue,
+      store
+    })
+
+    // Update the store's state to reflect the logged-in state
+    store.state.user.signedIn = true
+    // 
+    await wrapper.vm.$nextTick()
+
+    // Check if the profile picture is rendered
+    expect(wrapper.find('button').exists()).toBe(false)
+    expect(wrapper.find('img').exists()).toBe(true)
+  })
+})
+ * 
+ */
