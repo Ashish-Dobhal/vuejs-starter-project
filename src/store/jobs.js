@@ -51,7 +51,8 @@ const actions = {
     const baseUrl = import.meta.env.VITE_APP_API_URL
     const response = await axios.get(`http://localhost:3000/jobs`)
     commit("updateJobsStore", response.data)
-  }
+  },
+  getJobById(jobId) {}
 }
 
 export default {

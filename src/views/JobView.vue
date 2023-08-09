@@ -15,7 +15,6 @@ export default {
     return { jobDetails: null }
   },
   async mounted() {
-    console.log(this.id)
     this.jobDetails = (await axios.get(`http://localhost:3000/jobs/${this.id}`)).data
   }
 }

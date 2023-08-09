@@ -1,7 +1,7 @@
 <template>
   <main class="flex-auto bg-brand-gray-2 p-8">
     <ol>
-      <job-listing v-for="job in displayedJobs" :key="job.id" :job="job"></job-listing>
+      <job-listing v-for="job in displayedJobs" :key="job.id" :job="job" data-testid="job-listing"></job-listing>
     </ol>
     <div data-testid="pagination" class="flex flex-row-reverse gap-3 align-middle text-center" v-if="allJobs?.length > 0">
       <font-awesome-icon :icon="['fas', 'chevron-right']" :class="['ml-4', 'mr-3', 'my-1', hasNextPage ? '' : 'disabled']"
