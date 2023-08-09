@@ -22,55 +22,33 @@ import ActionButton from '../shared/ActionButton.vue'
 export default {
   name: "JobListings",
   components: { JobListing, ActionButton },
-  data() {
-    return {
-      jobsPerPage: 10,
-    }
-  },
   computed: {
-    ...mapGetters({ allJobs: 'jobs/allJobs' }),
-    currentPage() {
-      const pageString = this.$route.query.page || "1"
-      return Number.parseInt(pageString)
-    },
-    displayedJobs() {
-      const firstJobIdx = (this.currentPage - 1) * this.jobsPerPage
-      const lastJobIdx = this.currentPage * this.jobsPerPage
-      return this.allJobs?.slice(firstJobIdx, lastJobIdx)
-    },
+    ...mapGetters('jobs',
+      ['allJobs', 'jobsPerPage', 'pageNos', 'displayedJobs', 'totalPages', 'totalJobs', 'hasPrevPage', 'hasNextPage']),
     currentPageFirstJobPosition() {
-      return (this.currentPage - 1) * this.jobsPerPage + 1
+      return (this.pageNos - 1) * this.jobsPerPage + 1
     },
     currentPageLastJobPosition() {
-      if (this.allJobs.length <= this.currentPage * this.jobsPerPage) {
-        return this.jobs.length
+      if (this.allJobs.length <= this.pageNos * this.jobsPerPage) {
+        return this.allJobs.length
       } else {
-        return this.currentPage * this.jobsPerPage
+        return this.pageNos * this.jobsPerPage
       }
-    },
-    hasPrevPage() {
-      return this.currentPage > 1
-    },
-    totalPages() {
-      return Math.ceil(this.allJobs.length / this.jobsPerPage)
-    },
-    hasNextPage() {
-      return this.currentPage < this.totalPages
     },
   },
   methods: {
     gotoNextPage() {
       if (this.hasNextPage)
-        this.$router.push({ name: "JobResults", query: { page: this.currentPage + 1 } })
+        this.$router.push({ name: "JobResults", query: { page: this.pageNos + 1 } })
     },
     gotoPreviousPage() {
       if (this.hasPrevPage)
-        this.$router.push({ name: "JobResults", query: { page: this.currentPage - 1 } })
+        this.$router.push({ name: "JobResults", query: { page: this.pageNos - 1 } })
     }
 
   },
   created() {
-    this.$store.dispatch('jobs/initJobsStore')
+    this.$store.dispatch('jobs/initJobsStore', this.$route.query.page)
   }
 }
 </script>
