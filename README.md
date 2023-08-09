@@ -239,6 +239,14 @@ describe("API  Service", () => {
 
 - 💡 findBy vs getBy findBy methods are async whereas getBy are sync. use findBy+await when testing a component with a async action such as a http rest call etc
 
+## [router gotcha for refreshing page on route change](https://github.com/vuejs/vue-router/issues/474)
+
+- this helped me fix updating the page content on query param change when the store was being initialised on the created() hook
+
+```html
+<router-view :key="$route.fullPath"></router-view>
+```
+
 # job-search
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -312,3 +320,16 @@ export const default = {
 
 - both vuejs router, vuex and pinia stores are examples of plugins would be good to understand them to understand the usecase
 - why use mutations to update vue state https://stackoverflow.com/questions/62263148/change-state-directly-in-action-in-vuex
+
+## [](telerik.com/blogs/10-good-practices-building-maintaining-large-vuejs-projects)
+
+### highlight pointers
+
+- vue store organisation
+  - either organise features functionally ie based on business domains
+  - model the stores based on the api models
+- use action for api calls and the commit data ops.
+- simplify Your Code Base with mapState, mapGetters, mapMutations and mapActions
+- api factory design pattern (uses inject to create a this.$api available to all components. need to understand vuejs more to understand this pattern)
+
+- https://github.com/promyze/best-coding-practices#vuejs

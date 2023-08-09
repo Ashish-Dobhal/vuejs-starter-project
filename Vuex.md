@@ -318,6 +318,16 @@ methods: {
 }
 ```
 
+- more examples of mapper fns
+
+```js
+computed: {
+    mapGetters('jobs', {totalJobs: 'totalJobs'})
+    mapGetters('user', ['session','acountId']})
+
+}
+```
+
 ```js
 getters: {
   incrementModule(state, getters, rootState, rootGetters)
@@ -376,4 +386,98 @@ const MainModule = {
     foo: "bar"
   }
 }
+```
+
+- [Vuex is-it-bad-practice-to-access-vuex-state-properties-directly-without-getters-a](https://stackoverflow.com/questions/47231044/is-it-bad-practice-to-access-vuex-state-properties-directly-without-getters-a)
+
+- Using mutations / actions / getters etc is a suggested best practice but doesn't mean it has to be followed.
+- It could be that you just want to read a value from the state at which point it might be a little over-kill to write a getter for it.
+- I personally always try to use actions / getters to keep things consistent as it can get messy when you start mutating the state without a centralised system.
+- An example would be if you had a user module in the state. You might be tempted to just need the username so $store.state.user.username but I would always prefer to expose the user via getUser and access it on the component via user.username.
+- A pro for being able to access the state directly is a watch:
+
+## [Comments from a stackoverflow article on this topic](https://stackoverflow.com/questions/47191231/why-is-state-visible-to-components/47191438#47191438)
+
+```js
+  watch: {
+    '$store.state.user' (to, from) {
+      console.log('I changed!')
+  }
+}
+```
+
+- This would allow you to know whenever the user state changed but again, if you used $this.$store.dispatch('setUser', myUser) you could do the same in the action.
+- I think the key here is be consistent, pick a way and use it but following best practice is always recommended.
+
+# [Vuex best practices pointers](https://dev.to/timothyokooboh/vuex-best-practices-45dd)
+
+- go throught he topic in this url to understand the advance vuex concepts https://frontendmasters.com/courses/vuex/
+
+- handling store load within vuex example. but this doesnt neccesarily is the best practise for it
+- read up more on handling load state in vuejs
+
+```js
+/*
+ * source article: https://stackoverflow.com/questions/56587777/wait-for-vuex-value-to-load-before-loading-component
+ */
+// enums.js
+export default {
+  INIT: 0,
+  LOADING: 1,
+  ERROR: 2,
+  LOADED: 3
+}
+
+import ENUM from "@/enums";
+// store.js
+export default new Vuex.Store({
+  state: {
+    apiState: ENUM.INIT,
+    accounts: [],
+    // ...other state
+  },
+  mutations: {
+    updateAccounts (state, accounts) {
+      state.accounts = accounts;
+      state.apiState = ENUM.LOADED;
+    },
+    setApiState (state, apiState) {
+      state.apiState = apiState;
+    },
+  },
+  actions: {
+    loadAccounts ({commit) {
+      commit('setApiState', ENUM.LOADING);
+      someFetchInterface()
+        .then(data=>commit('updateAccounts', data))
+        .catch(err=>commit('setApiState', ENUM.ERROR))
+    }
+  }
+});
+```
+
+## [Vue js Routing + state management interesting thread](https://stackoverflow.com/questions/51495461/how-to-prevent-any-routing-before-some-async-data-in-vuex-store-has-loaded)
+
+- how-to-prevent-any-routing-before-some-async-data-in-vuex-store-has-loaded
+- answer
+
+```js
+init ({ dispatch }) {       // Could also be async and use await instead of return
+  return Promise.all([
+    dispatch('getUserSession'), // Using another action
+    dispatch('auth/init'),      // In another module
+    fetch('rest/1pi/endpoint')         // With the native fetch API
+    // ...
+  ])
+}
+
+// In your router initialization code
+const storeInit = store.dispatch('init')
+// Before all other beforeEach
+router.beforeEach((to, from, next) => {
+  storeInit.then(next)
+    .catch(e => {
+      // Handle error
+    })
+})
 ```
