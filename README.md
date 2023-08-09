@@ -280,3 +280,35 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Filters
+
+https://v2.vuejs.org/v2/guide/filters.html
+
+```js
+export const default = {
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+}
+}
+```
+
+```html
+<!-- template code -->
+<h1>Name : {{name | capitalise}}</h1>
+<!-- mixins can be chained  -->
+<html-element>{{data | filterA | filterB | filterC }}</html-element>
+```
+
+## mixins
+
+## plugins
+
+[Vuejs plugins ](https://v2.vuejs.org/v2/guide/plugins)
+
+- both vuejs router, vuex and pinia stores are examples of plugins would be good to understand them to understand the usecase
+- why use mutations to update vue state https://stackoverflow.com/questions/62263148/change-state-directly-in-action-in-vuex
