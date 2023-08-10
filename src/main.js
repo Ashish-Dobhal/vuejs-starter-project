@@ -10,14 +10,25 @@ import {
   faBuilding,
   faChartSimple,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faAngleUp,
+  faAngleDown
 } from "@fortawesome/free-solid-svg-icons"
 
 import router from "@/router"
 // GOTCHA installed the vscode plugin vetur for this to work. Not sure though
 import App from "@/App.vue"
 import { store } from "./store"
-library.add(faSearch, faBuilding, faLocationDot, faChartSimple, faChevronLeft, faChevronRight)
+library.add(
+  faSearch,
+  faBuilding,
+  faLocationDot,
+  faChartSimple,
+  faChevronLeft,
+  faChevronRight,
+  faAngleUp,
+  faAngleDown
+)
 
 // const vuexStore = createStore()
 // const piniaStore = createPinia()
