@@ -1,6 +1,11 @@
 import Vuex from "vuex"
 import userStore from "../../../src/store/user"
 
+/**
+ *
+ *  ⚠️ FIXME: mv away from the pattern of replicating the entire store for the store related tests
+ *   vue master class job tests https://interactivebrokers.udemy.com/course/vue-masterclass/learn/lecture/35062294#overview
+ */
 describe("Vuex Global Store", () => {
   let store
   beforeEach(() => {
@@ -11,7 +16,6 @@ describe("Vuex Global Store", () => {
       }
     })
   })
-
   it("sets signedIn to true when login is called", () => {
     store.dispatch("user/login")
     expect(store.state.user.signedIn).toBe(true)

@@ -333,3 +333,7 @@ export const default = {
 - api factory design pattern (uses inject to create a this.$api available to all components. need to understand vuejs more to understand this pattern)
 
 - https://github.com/promyze/best-coding-practices#vuejs
+
+## vs cod gotchas
+
+- multi line comment: shift + alt + a

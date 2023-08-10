@@ -15,10 +15,10 @@
   </main>
 </template>
 <script>
-import { mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 import JobListing from "@/components/job-results/JobListing.vue"
 import ActionButton from '../shared/ActionButton.vue'
-
+import { INIT_JOBS_STORE } from "../../store/actions.constants"
 export default {
   name: "JobListings",
   components: { JobListing, ActionButton },
@@ -37,6 +37,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions('jobs', [INIT_JOBS_STORE]),
     gotoNextPage() {
       if (this.hasNextPage)
         this.$router.push({ name: "JobResults", query: { page: this.pageNos + 1 } })
@@ -48,7 +49,7 @@ export default {
 
   },
   created() {
-    this.$store.dispatch('jobs/initJobsStore', this.$route.query.page)
+    this.INIT_JOBS_STORE(this.$route.query.page)
   }
 }
 </script>

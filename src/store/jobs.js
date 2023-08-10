@@ -1,6 +1,5 @@
 import getJobs from "@/api/getJobs"
-import axios from "axios"
-
+import { INIT_JOBS_STORE } from "./actions.constants"
 const state = () => ({
   allJobs: null,
   pageNos: 1,
@@ -46,13 +45,12 @@ const mutations = {
 }
 
 const actions = {
-  async initJobsStore({ commit, state }, pageNos) {
+  async [INIT_JOBS_STORE]({ commit, state }, pageNos) {
     commit("setPageNos", parseInt(pageNos) || 1)
 
     const jobs = await getJobs()
     commit("updateJobsStore", jobs)
-  },
-  getJobById(jobId) {}
+  }
 }
 
 export default {

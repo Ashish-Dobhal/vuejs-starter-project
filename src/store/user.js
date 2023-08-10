@@ -1,3 +1,5 @@
+import { LOGIN_USER, LOGOUT_USER } from "./actions.constants"
+
 const state = () => ({
   signedIn: false
 })
@@ -18,11 +20,10 @@ const mutations = {
 }
 
 const actions = {
-  login({ commit, state }) {
-    console.log("login ===============")
+  [LOGIN_USER]({ commit, state }) {
     commit("login")
   },
-  logout({ commit, state }) {
+  [LOGOUT_USER]({ commit, state }) {
     commit("logout")
   }
 }

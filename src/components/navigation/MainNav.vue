@@ -13,9 +13,9 @@
                 {{ navItem.title }}</router-link>
             </li>
             <div class="absolute right-0 mx-2 flex h-full items-center rounded-full px-2 py-2">
-              <action-button v-if="!signedIn" text="Sign In" @click="signIn" />
+              <action-button v-if="!signedIn" text="Sign In" @click="LOGIN_USER" />
               <profile-image v-else src="https://tuk-cdn.s3.amazonaws.com/assets/components/avatars/a_3_0.png"
-                alt="Profile Pic" @click="signOut" />
+                alt="Profile Pic" @click="LOGOUT_USER" />
             </div>
           </ul>
         </nav>
@@ -26,10 +26,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 import ActionButton from "@/components/shared/ActionButton.vue";
 import ProfileImage from "@/components/navigation/ProfileImage.vue";
 import TheSubnav from "@/components/navigation/TheSubnav.vue"
+import { LOGIN_USER, LOGOUT_USER } from "@/store/actions.constants"
+
 export default {
   name: "MainNav",
   components: { ActionButton, ProfileImage, TheSubnav },
@@ -54,18 +56,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions('user', [LOGIN_USER, LOGOUT_USER]),
     isFirstElement(index) {
       return index !== 0;
     },
-    signIn(_event) {
-      this.$store.dispatch('user/login')
-    },
-    signOut(_event) {
-      this.$store.dispatch('user/logout')
-    },
   },
   computed: {
-    ...mapGetters({ signedIn: 'user/signedIn' }), // this is done as we are using a namespaced module
+    ...mapGetters('user', ['signedIn']), // this is done as we are using a namespaced module
     headerHeightClass() {
       return {
         'h-16': !this.signedIn,
