@@ -1,5 +1,5 @@
 import Vuex from "vuex"
-
+import { LOGIN_USER, LOGOUT_USER, INIT_JOBS_STORE } from "../../../src/store/actions.constants"
 export const mockLoginAction = vi.fn()
 export const mockLogoutAction = vi.fn()
 export const mockStore = new Vuex.Store({
@@ -21,10 +21,10 @@ export const mockStore = new Vuex.Store({
         }
       },
       actions: {
-        login({ commit }) {
+        [LOGIN_USER]({ commit }) {
           commit("login")
         },
-        logout({ commit }) {
+        [LOGOUT_USER]({ commit }) {
           commit("logout")
         }
       }
@@ -73,7 +73,7 @@ export const mockStore = new Vuex.Store({
         }
       },
       actions: {
-        async initJobsStore({ commit, state }, pageNos) {
+        async [INIT_JOBS_STORE]({ commit, state }, pageNos) {
           commit("setPageNos", parseInt(pageNos) || 1)
           // TODO: add vite config for IA machine
           const response = commit("updateJobsStore", jobs_response_json)
