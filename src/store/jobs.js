@@ -1,3 +1,4 @@
+import getJobs from "@/api/getJobs"
 import axios from "axios"
 
 const state = () => ({
@@ -47,10 +48,9 @@ const mutations = {
 const actions = {
   async initJobsStore({ commit, state }, pageNos) {
     commit("setPageNos", parseInt(pageNos) || 1)
-    // TODO: add vite config for IA machine
-    const baseUrl = import.meta.env.VITE_APP_API_URL
-    const response = await axios.get(`http://localhost:3000/jobs`)
-    commit("updateJobsStore", response.data)
+
+    const jobs = await getJobs()
+    commit("updateJobsStore", jobs)
   },
   getJobById(jobId) {}
 }

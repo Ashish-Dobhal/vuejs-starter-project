@@ -1,6 +1,9 @@
 /**
  * FIXME: the tests in this file needs to be fixed to supporrt updating the store state.
  * set page number to 2 and then update the tests to test for last page and first page next and prev btn apperence
+ * try steps as listed here https://v1.test-utils.vuejs.org/guides/using-with-vuex.html
+ * approach mostly valuable for actions where we are simply testing method.called()
+ * https://markus.oberlehner.net/blog/testing-vuex-powered-vue-components-with-jest/
  */
 import { render, screen } from "@testing-library/vue"
 import { RouterLinkStub } from "@vue/test-utils"
