@@ -24,6 +24,10 @@ module.exports = {
           blue: "0 0 3px 3px #4285f4",
           gray: "0 1px 3px 0 rgba(60 64 67 .3)"
         }
+      },
+      backgroundImage: {
+        "spotlight-1": "url('./assets/spotlight1.jpg')",
+        "spotlight-2": "url('./assets/spotlight2.jpg')"
       }
     }
   },
