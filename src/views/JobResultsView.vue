@@ -5,7 +5,7 @@ div( class="flex w-full flex-row flex-nowrap")
 </template>
 
 <script>
-import JobResultsSidebar from "@/components/job-results/JobFiltersSidebar.vue"
+import JobResultsSidebar from "@/components/job-results/JobFiltersSidebar/JobFiltersSidebar.vue"
 import JobListings from '@/components/job-results/JobListings.vue'
 export default {
   name: "JobResultsView",
