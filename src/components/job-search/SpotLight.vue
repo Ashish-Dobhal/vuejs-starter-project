@@ -1,7 +1,7 @@
 <template lang="pug">
 ul(class="mx-auto")
   li(v-for="spotLight in spotLights" :key="spotLight.id") 
-    slot(:spotLight="spotLight")
+    slot(:spotLight="spotLight" :imgUrl="spotLight.imgLocal")
       h3 {{ spotlight.title }}
 </template>
 
@@ -19,6 +19,16 @@ export default {
     const spotLightUrl = `${baseUrl}/spotlights`
     const response = await axios.get(spotLightUrl)
     this.spotLights = response.data
+  },
+  methods: {
+    async imageUrl(spotlight) {
+      try {
+        await axios.get(spotlight.img)
+        return spotlight.img
+      } catch (err) {
+        return spotlight.imgLocal
+      }
+    }
   }
 }
 </script>

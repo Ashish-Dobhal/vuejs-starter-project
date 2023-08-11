@@ -12,7 +12,7 @@ main( class="flex h-screen flex-col")
   spot-light(class="flex flex-row pb-16")
     template(#default="slotProps")
       router-link(to="/job/results" class="mx-5 flex flex-col h-96 w-72 rounded-lg border bg-brand-gray-2")
-        img(class="object-contain" :src="slotProps.spotLight.imgLocal")
+        img(class="object-contain" :src="slotProps.imgUrl")
         div(class="mt-3 h-48 px-6 py-4")
           h3(class="text-lg font-medium") {{ slotProps.spotLight.title }}
           p(class="mt-3 text-sm") {{ slotProps.spotLight.description }}
