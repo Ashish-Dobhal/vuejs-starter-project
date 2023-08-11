@@ -19,16 +19,6 @@ export default {
     const spotLightUrl = `${baseUrl}/spotlights`
     const response = await axios.get(spotLightUrl)
     this.spotLights = response.data
-  },
-  methods: {
-    async imageUrl(spotlight) {
-      try {
-        await axios.get(spotlight.img)
-        return spotlight.img
-      } catch (err) {
-        return spotlight.imgLocal
-      }
-    }
   }
 }
 </script>
