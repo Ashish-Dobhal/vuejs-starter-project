@@ -1,7 +1,7 @@
 <template lang="pug">
 ul(class="mx-auto")
   li(v-for="spotLight in spotLights" :key="spotLight.id") 
-    slot(:spotLight="spotLight" :imgUrl="spotLight.imgLocal")
+    slot(:title="spotLight.title" :description="spotLight.description" :imgUrl="spotLight.imgLocal")
       h3 {{ spotlight.title }}
 </template>
 

@@ -10,12 +10,12 @@ main( class="flex h-screen flex-col")
       div( class=" col-start-14 col-span-10 self-center justify-self-center")
         img( class="opacity-60 w-100 h-100" src="../../../../assets/hero_image_1.png")
   spot-light(class="flex flex-row pb-16")
-    template(#default="slotProps")
+    template(#default="{title, description, imgUrl}")
       router-link(to="/job/results" class="mx-5 flex flex-col h-96 w-72 rounded-lg border bg-brand-gray-2")
-        img(class="object-contain" :src="slotProps.imgUrl")
+        img(class="object-contain" :src="imgUrl")
         div(class="mt-3 h-48 px-6 py-4")
-          h3(class="text-lg font-medium") {{ slotProps.spotLight.title }}
-          p(class="mt-3 text-sm") {{ slotProps.spotLight.description }}
+          h3(class="text-lg font-medium") {{ title }}
+          p(class="mt-3 text-sm") {{ description }}
         router-link(to="/job/results" class="px-6 pb-4 text-sm text-brand-blue-1") See jobs
 
 </template>
