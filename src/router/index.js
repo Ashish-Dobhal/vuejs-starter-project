@@ -1,5 +1,6 @@
 import HomeView from "@/views/HomeView.vue"
 import JobResultsView from "@/views/JobResultsView.vue"
+import TeamsView from "@/views/TeamsView.vue"
 import JobView from "@/views/JobView.vue"
 import { createRouter, createWebHashHistory } from "vue-router"
 
@@ -9,6 +10,11 @@ const routes = [
     component: HomeView,
     // component: () => import("@/views/HomeView.vue"), lazy loading route
     name: "Home"
+  },
+  {
+    path: "/teams",
+    component: TeamsView,
+    name: "Teams"
   },
   {
     path: "/job/results",

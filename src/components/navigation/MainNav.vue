@@ -46,7 +46,7 @@ export default {
         { id: 1, name: "Nupur" },
       ],
       navItems: [
-        { title: "Teams", to: { name: "Home" } },
+        { title: "Teams", to: { name: "Teams" } },
         { title: "Location", to: { name: "Home" } },
         { title: "Life at Dobbs Diaries", to: { name: "Home" } },
         { title: "How we Hire", to: { name: "Home" } },
