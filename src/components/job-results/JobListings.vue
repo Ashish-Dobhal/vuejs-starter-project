@@ -3,12 +3,12 @@
     <ol>
       <job-listing v-for="job in displayedJobs" :key="job.id" :job="job" data-testid="job-listing"></job-listing>
     </ol>
-    <div data-testid="pagination" class="flex flex-row-reverse gap-3 align-middle text-center" v-if="allJobs?.length > 0">
+    <div data-testid="pagination" class="flex flex-row-reverse gap-3 align-middle text-center" v-if="totalJobs > 0">
       <font-awesome-icon :icon="['fas', 'chevron-right']" :class="['ml-4', 'mr-3', 'my-1', hasNextPage ? '' : 'disabled']"
         @click="gotoNextPage" />
       <font-awesome-icon :icon="['fas', 'chevron-left']" :class="['ml-4', 'mr-3', 'my-1', hasPrevPage ? '' : 'disabled']"
         @click="gotoPreviousPage" />
-      <span class="mr-20"> {{ currentPageFirstJobPosition }} - {{ currentPageLastJobPosition }} of {{ allJobs?.length }}
+      <span class="mr-20"> {{ currentPageFirstJobPosition }} - {{ currentPageLastJobPosition }} of {{ totalJobs }}
         jobs
       </span>
     </div>
@@ -24,13 +24,13 @@ export default {
   components: { JobListing, ActionButton },
   computed: {
     ...mapGetters('jobs',
-      ['allJobs', 'jobsPerPage', 'pageNos', 'displayedJobs', 'totalPages', 'totalJobs', 'hasPrevPage', 'hasNextPage']),
+      ['filteredJobs', 'displayedJobs', 'jobsPerPage', 'pageNos', , 'totalJobs', 'totalJobs', 'hasPrevPage', 'hasNextPage']),
     currentPageFirstJobPosition() {
       return (this.pageNos - 1) * this.jobsPerPage + 1
     },
     currentPageLastJobPosition() {
-      if (this.allJobs.length <= this.pageNos * this.jobsPerPage) {
-        return this.allJobs.length
+      if (this.filteredJobs.length <= this.pageNos * this.jobsPerPage) {
+        return this.filteredJobs.length
       } else {
         return this.pageNos * this.jobsPerPage
       }

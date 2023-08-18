@@ -1,6 +1,6 @@
 <template lang="pug">
-div(class="border-b border-solid-gray-2 py-5" @click="toggleAccordion")
-  div(class="flex flex-wrap items-center justify-between cursor-pointer" role="button")
+div(class="border-b border-solid-gray-2 py-5")
+  div(class="flex flex-wrap items-center justify-between cursor-pointer" role="button" @click="toggleAccordion")
     h3(class="text-base font-semibold") {{ headerTitle }}
     font-awesome-icon(:icon="caretIcon") 
   div( class="w-100 mt-5" v-if="isOpened")
